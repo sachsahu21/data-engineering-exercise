@@ -5,6 +5,8 @@ deps:
 	brew install pipenv
 
 install:
+	pyenv install 3.10 || true
+	pyenv local 3.10
 	pipenv sync
 
 up:

@@ -81,7 +81,8 @@ To install dependencies like pipenv and pyenv for running the producer script:
 make deps
 ```
 
-To install the python libraries
+To install the python version and libraries. Note that if the pyenv already exists, you will be prompted to skip. Just press
+`n` and it should work.
 ```shell
 make install
 ```
