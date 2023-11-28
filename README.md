@@ -112,3 +112,4 @@ Note that the python script accepts two arguments:
 python scripts/producer.py --loglevel INFO --interval 30
 ```
 loglevel controls the logging verbosity while interval controls how many seconds before a new order event is published to Kafka.
+Valid values for loglevel include: INFO, WARN, DEBUG etc. For 

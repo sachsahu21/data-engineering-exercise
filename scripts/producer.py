@@ -9,7 +9,8 @@ from confluent_kafka import Producer
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--loglevel', required=False, default='WARNING', help='log level for printing')
-parser.add_argument('--interval', required=False, type=int, help='interval for producing the messages, default to 60s', default=60)
+parser.add_argument('--interval', required=False, type=int, help='interval for producing the messages, default to 60s',
+                    default=20)
 args = parser.parse_args()
 
 logger = logging.getLogger(__name__)
