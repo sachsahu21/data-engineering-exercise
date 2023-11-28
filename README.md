@@ -37,7 +37,7 @@ done to create the reporting layer. If any scheduling needs to be done for the s
 will need to briefly describe outline how the scheduling will be done, at what intervals and with what tool (with a brief justification).
 
 You are not restricted to any tool, nor any language to implement the pipeline. You are expected to read through the schema yourself
-and decide the data should be joined.
+and decide how the data should be joined.
 
 You will be given 1 week from the start of when this assignment is shared to complete the task. At the end of the assignment,
 the following should be submitted:
