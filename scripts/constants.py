@@ -50,6 +50,7 @@ class PaymentMethod(Enum):
 # Placed -> Processing -> Shipped -> Last Mile -> Delivered
 # Placed -> Cancelled -> Refunded
 # Placed -> Shipped -> Cancelled -> Refunded
+# Placed -> Payment Failed
 # Assume:
 # 1. once u reached shipped u cant cancel
 STATE_TRANSITIONS = {
