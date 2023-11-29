@@ -107,9 +107,11 @@ To start the consumer and produce order events to Kafka using default values
 make start
 ```
 
-Note that the python script accepts two arguments:
+Note that the make command accepts two arguments:
 ```shell
-python scripts/producer.py --loglevel INFO --interval 30
+make start loglevel=INFO interval=30
 ```
 loglevel controls the logging verbosity while interval controls how many seconds before a new order event is published to Kafka.
-Valid values for loglevel include: INFO, WARN, DEBUG etc. For 
+Valid values for loglevel include: INFO, WARN, DEBUG etc.
+
+For interval, we choose 20 seconds by default. You can reduce/increase the time interval if you wish to.

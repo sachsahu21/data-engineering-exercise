@@ -1,5 +1,8 @@
 .PHONY: deps install up stop clean
 
+interval?=20
+loglevel?=INFO
+
 deps:
 	brew install pyenv
 	brew install pipenv
@@ -19,4 +22,4 @@ clean:
 	docker compose down --volumes
 
 start:
-	pipenv run python scripts/producer.py --loglevel INFO
+	pipenv run python scripts/producer.py --loglevel $(loglevel) --interval $(interval)
