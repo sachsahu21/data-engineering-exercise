@@ -72,7 +72,7 @@ If you have either one of these not available, do let us know, and we can make a
 ### Steps
 
 We have provided a few things to help you get started:
-- a docker compose file with dependencies such as Kafka and PostgreSQL
+- a docker compose file with dependencies such as Kafka, localstack and PostgreSQL
 - some python script for producing order data to kafka
 - Some init scripts for PostgreSQL
 
