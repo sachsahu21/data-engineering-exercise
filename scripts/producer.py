@@ -9,18 +9,16 @@ from confluent_kafka import Producer
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--loglevel', required=False, default='WARNING', help='log level for printing')
-parser.add_argument('--interval', required=False, type=int, help='interval for producing the messages, default to 60s',
+parser.add_argument('--interval', required=False, type=int, help='interval for producing the messages, default to 20s',
                     default=20)
 args = parser.parse_args()
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=getattr(logging, args.loglevel))
 
-# Kafka broker details
 bootstrap_servers = 'localhost:29092'
 topic = 'orders'
 
-# Create Kafka Producer
 producer_conf = {
     'bootstrap.servers': bootstrap_servers,
     'client.id': 'orders-producer'
@@ -39,6 +37,7 @@ def produce_to_kafka(order_topic, published_order):
     producer.flush()
 
 
+# process all pending state transitions into new state assuming there's a new state to transition to
 def process_pending_callbacks():
     global callbacks
     new_callbacks = []
@@ -50,20 +49,20 @@ def process_pending_callbacks():
         if callback_next_order is not None:
             new_callbacks.append(callback_next_order)
         logger.debug("new callbacks: %s", callbacks)
+    logger.info("processing %d pending callbacks", len(new_callbacks))
 
     callbacks = new_callbacks
 
 
-# Push messages periodically
 try:
     logger.info("starting producer...")
 
     while True:
         try:
-            logger.info("processing batch...")
+            logger.info("processing current time interval: %s...", datetime.now(timezone.utc).isoformat())
             process_pending_callbacks()
             if order.should_have_order():
-                logger.debug("have order this batch...")
+                logger.debug("have order during this interval...")
                 new_order = order.generate_order()
                 logger.debug("order: %s", new_order)
                 produce_to_kafka(topic, new_order)
@@ -73,8 +72,10 @@ try:
                     logger.debug("appending next order")
                     callbacks.append(new_order)
                     logger.debug("callbacks: %s", callbacks)
+                logger.info("published new order event...")
             else:
-                logger.debug("no order this batch...")
+                logger.debug("no order during this interval...")
+                logger.info("no new order event during this interval...")
         except KeyboardInterrupt as kie:
             raise kie
         except Exception as e:

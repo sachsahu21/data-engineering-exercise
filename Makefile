@@ -18,5 +18,5 @@ stop:
 clean:
 	docker compose down --volumes
 
-start: install
-	pipenv run python scripts/producer.py
+start:
+	pipenv run python scripts/producer.py --loglevel INFO
