@@ -32,6 +32,14 @@ CREATE TABLE business_entity (
    is_franchise BOOLEAN  
 );
 
+CREATE TABLE payment_fees (
+    method VARCHAR PRIMARY KEY,
+    fee DECIMAL(5,2)
+);
+
+
+-----
+
 
 -- Number of orders placed per day
 SELECT order_date, COUNT(*) AS orders_per_day
@@ -72,3 +80,24 @@ FROM
     INNER JOIN distribution_center dc ON orders.dc_id = dc.dc_id
 GROUP BY 
     dc.manager_id;
+
+    
+-- Number orders per payment method
+SELECT 
+    payment_method,
+    COUNT(*) AS num_orders
+FROM orders
+GROUP BY payment_method;
+
+-- Payment failure rate
+SELECT  
+    COUNT(CASE WHEN payment_status='fail' THEN 1 ELSE NULL END) / COUNT(*) AS failure_rate
+FROM payment_processing;
+
+-- Orders by franchise vs non-franchise
+SELECT
+    be.is_franchise,
+    COUNT(orders.order_id) AS order_count
+FROM orders
+JOIN business_entity be ON orders.entity_id = be.entity_id
+GROUP BY be.is_franchise;
