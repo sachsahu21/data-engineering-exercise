@@ -1,0 +1,19 @@
+
+Ingestion: 
+    Stream from kafka into data lake (GCS,S3,BLOB) using data flow or data proc (GCP) 
+
+
+Data Pipeline: Use dataflow or dataproc (GCP) for building data pipelines, data transformation
+    Parse the Json format 
+    Map the columns
+    Join with PostgreSQL
+
+Data Warehouse
+    Store the data in Bigquery
+    Build aggregated tables from the raw data.
+
+Reporting:
+    Use datastudio or looker to build Reports.
+    Use the query directly in the looker studio or build aggregated table/ view on top of Bigquery.
+
+

@@ -1,15 +1,7 @@
 
 -- Data Pipeline Architecture
+-- Refer architecture.txt
 
-
--- •	Ingestion: Stream from kafka into data lake (GCS,S3,BLOB) using data flow or data proc (GCP) 
--- •	Data Pipeline: Use dataflow or dataproc (GCP) for building data pipelines, data transformation
-    -- o	Parse the Json format 
-    -- o	Map the columns
-    -- o	Join with PostgreSQL
--- •	Data Warehouse
-    -- o	Store the data in Bigquery
-    -- o	Build aggregated tables from the raw data.
 
 
 CREATE TABLE orders (
