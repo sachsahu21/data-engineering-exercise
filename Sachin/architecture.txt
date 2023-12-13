@@ -1,12 +1,13 @@
 
 Ingestion: 
-    Stream from kafka into data lake (GCS,S3,BLOB) using data flow or data proc (GCP) 
+    Stream data from kafka into data lake (GCS,S3,BLOB) using data flow or data proc (GCP) 
 
 
-Data Pipeline: Use dataflow or dataproc (GCP) for building data pipelines, data transformation
-    Parse the Json format 
-    Map the columns
-    Join with PostgreSQL
+Data Pipeline: 
+    Use dataflow or dataproc (GCP) for building data pipelines and data transformation
+        Parse the Json format 
+        Map the columns
+        Join with PostgreSQL
 
 Data Warehouse
     Store the data in Bigquery
